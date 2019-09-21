@@ -26,7 +26,7 @@ struct ContentView: View {
                 ])
                 
                 }
-                .trim(from: animateTrimPath ? 1/21 : 0, to: animateTrimPath ? 1/2 : 1)
+            .trim(from: animateTrimPath ? 1/0.99 : 0, to: animateTrimPath ? 1/0.99 : 1)
                 .scale(50, anchor: .topLeading)
                 .stroke(Color.blue, lineWidth: 6)
                 .offset(x: 110, y: 350)
