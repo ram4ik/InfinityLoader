@@ -9,8 +9,38 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var animateTrimPath = false
+    @State var rotateInfinity = false
     var body: some View {
-        Text("Hello World")
+        ZStack {
+            Path { path in
+                path.addLines([
+                    .init(x: 2, y: 1),
+                    .init(x: 1, y: 0),
+                    .init(x: 0, y: 1),
+                    .init(x: 1, y: 2),
+                    .init(x: 3, y: 0),
+                    .init(x: 4, y: 1),
+                    .init(x: 3, y: 2),
+                    .init(x: 2, y: 1),
+                ])
+                
+                }
+                .trim(from: animateTrimPath ? 1/21 : 0, to: animateTrimPath ? 1/2 : 1)
+                .scale(50, anchor: .topLeading)
+                .stroke(Color.blue, lineWidth: 6)
+                .offset(x: 110, y: 350)
+                .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+                .onAppear() {
+                    self.animateTrimPath.toggle()
+                
+            }
+        }.rotationEffect(.degrees(rotateInfinity ? 0 : -360))
+            .scaleEffect(0.3, anchor: .center)
+            .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: false))
+            .onAppear() {
+                self.rotateInfinity.toggle()
+        }
     }
 }
 
